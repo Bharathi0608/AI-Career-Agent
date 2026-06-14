@@ -176,31 +176,6 @@ Open:
 
 ```text
 http://127.0.0.1:5000
-```
-
----
-
-## 🎯 Future Improvements
-
-* ATS Resume Analysis
-* Resume Keyword Optimization
-* Learning Roadmap Generator
-* Job Search API Integration
-* LinkedIn Profile Analysis
-* Resume PDF Report Export
-* Multi-Agent Decision Routing
-
----
-
-## 📸 Screenshots
-
-Add screenshots of:
-
-* Home Page
-* Resume Upload
-* AI Analysis Results
-* Job Recommendations
-* Resume Score Dashboard
 
 ---
 
