@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Resume Analysis</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            color: #2563eb;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            user-select: none;
+        }
+
+        h2:hover {
+            color: #1d4ed8;
+        }
+
+        h2::after {
+            content: '▼';
+            font-size: 0.8em;
+            transition: transform 0.3s;
+        }
+
+        h2.collapsed::after {
+            transform: rotate(-90deg);
+        }
+
+        .card-content {
+            display: block;
+        }
+
+        .card-content.collapsed {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+    </style>
+
+    <script>
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            header.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🤖 AI Resume Analysis Report</h1>
+
+        <div class="card">
+            <h2 onclick="toggleSection(this)">🛠 Extracted Skills</h2>
+            <div class="card-content">
+                <pre>{{ skills }}</pre>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 onclick="toggleSection(this)">💼 Job Matches</h2>
+            <div class="card-content">
+                {% for job in jobs %}
+                <p>{{ job.title }} - Score: {{ job.score }}</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 onclick="toggleSection(this)">🚀 AI Career Recommendations</h2>
+            <div class="card-content">
+                <pre>{{ ai_jobs }}</pre>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 onclick="toggleSection(this)">📊 Resume Score</h2>
+            <div class="card-content">
+                <pre>{{ resume_score }}</pre>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 onclick="toggleSection(this)">🎯 Interview Questions</h2>
+            <div class="card-content">
+                <pre>{{ interview_questions }}</pre>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 onclick="toggleSection(this)">✉️ Cover Letter</h2>
+            <div class="card-content">
+                <pre>{{ cover_letter }}</pre>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="/" class="btn">
+                Analyze Another Resume
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>

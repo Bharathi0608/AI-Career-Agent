@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Agent - Smart Resume Analysis</title>
+    <meta name="description" content="Get instant AI-driven resume scoring, skill extraction, career recommendations, cover letter drafts, and interview prep.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo-wrapper">
+                    <span class="logo-icon">🤖</span>
+                    <span class="logo-text">AI Career Agent</span>
+                </div>
+            </div>
+            <nav class="header-nav">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#about" class="nav-link">About</a>
+            </nav>
+            <div class="header-right">
+                <button class="header-btn cta-btn">Get Started</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">AI-Powered Resume Analysis</h1>
+                <p class="hero-subtitle">Get instant skills extraction, job matching, career recommendations, and interview preparation powered by advanced AI</p>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <h2 class="section-title">Powerful Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Skill Extraction</h3>
+                    <p>Automatically identify and extract technical skills, frameworks, and tools from your resume</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>Job Matching</h3>
+                    <p>Match your skills against our job database to find the best career opportunities</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Resume Scoring</h3>
+                    <p>Get a comprehensive score with strengths, weaknesses, and actionable suggestions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Career Roadmap</h3>
+                    <p>Receive personalized career path recommendations and salary insights</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎤</div>
+                    <h3>Interview Prep</h3>
+                    <p>Get 15 tailored interview questions with detailed answers for your skillset</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✉️</div>
+                    <h3>Cover Letter</h3>
+                    <p>Generate a professional, tailored cover letter draft instantly</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="how-it-works-section">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Upload Resume</h3>
+                        <p>Drag and drop your PDF resume or click to upload</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>AI Analysis</h3>
+                        <p>Our AI analyzes your resume, extracts skills, and matches with jobs</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Get Results</h3>
+                        <p>View your comprehensive analysis with actionable insights</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <h2 class="section-title">About AI Career Agent</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>AI Career Agent leverages cutting-edge artificial intelligence to transform how job seekers approach their career development. Our platform analyzes resumes with precision, providing personalized insights that help candidates stand out in competitive job markets.</p>
+                    <p>Powered by advanced language models and machine learning algorithms, we extract meaningful patterns from your resume and match them with industry requirements, ensuring you get the most relevant and actionable career advice.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Interview Questions</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">AI Powered</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">Instant</div>
+                        <div class="stat-label">Results</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upload Card -->
+        <div id="upload-card" class="glass-card">
+            <form id="upload-form" enctype="multipart/form-data">
+                <div id="drop-zone" class="upload-zone">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <h3>Drag & Drop Resume</h3>
+                    <p>Support for PDF resumes (Max 10MB)</p>
+                    <div id="file-info" class="file-info">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span id="selected-filename">filename.pdf</span>
+                    </div>
+                    <input type="file" id="file-input" name="resume" accept=".pdf" required style="display: none;">
+                </div>
+                
+                <button type="submit" id="submit-btn" class="btn" disabled>
+                    <span>Analyze Resume with AI</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="#" id="demo-btn" style="color: var(--primary-light); font-size: 0.95rem; text-decoration: none; font-weight: 500; transition: var(--transition-smooth); display: inline-flex; align-items: center; gap: 5px;">
+                        💡 Or explore with Demo Profile & Mock Data
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Real-time Loading Steps Overlay -->
+        <div id="loader" class="loading-overlay">
+            <div class="spinner"></div>
+            <h3 id="loader-title" style="margin-bottom: 8px;">Processing Resume</h3>
+            <p id="loader-subtitle" style="color: var(--text-muted); margin-bottom: 25px; font-size: 0.95rem;">Analyzing layout and reading PDF content...</p>
+            
+            <div class="loading-steps">
+                <div class="step-item active" id="step-read">
+                    <div class="step-dot"></div>
+                    <span>Extracting text from PDF resume</span>
+                </div>
+                <div class="step-item" id="step-skills">
+                    <div class="step-dot"></div>
+                    <span>Identifying technical skills & proficiencies</span>
+                </div>
+                <div class="step-item" id="step-score">
+                    <div class="step-dot"></div>
+                    <span>Scoring qualifications and structure</span>
+                </div>
+                <div class="step-item" id="step-jobs">
+                    <div class="step-dot"></div>
+                    <span>Matching with industry roles & career paths</span>
+                </div>
+                <div class="step-item" id="step-letter">
+                    <div class="step-dot"></div>
+                    <span>Drafting tailored cover letter & interview prep</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Dashboard -->
+        <div id="result-container">
+            <div class="result-header">
+                <div>
+                    <h2 id="result-name" style="font-size: 1.8rem; font-weight: 700; color: var(--text-primary);">Resume Assessment</h2>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Report generated by LLM Agent</p>
+                </div>
+                <button id="reset-btn" class="reset-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                    <span>Analyze Another</span>
+                </button>
+            </div>
+
+            <div id="fallback-badge" class="fallback-alert" style="display: none;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span>AI Agent encountered an issue. Displaying local matching and default statistics.</span>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tabs-nav">
+                <button class="tab-btn active" data-tab="overview">
+                    <span>🏠 Overview</span>
+                </button>
+                <button class="tab-btn" data-tab="skills">
+                    <span>🛠 Skills & Match</span>
+                </button>
+                <button class="tab-btn" data-tab="recommendations">
+                    <span>🚀 Career Roadmap</span>
+                </button>
+                <button class="tab-btn" data-tab="questions">
+                    <span>🎯 Interview Prep</span>
+                </button>
+                <button class="tab-btn" data-tab="cover-letter">
+                    <span>✉️ Cover Letter</span>
+                </button>
+            </div>
+
+            <!-- Tab Content Panes -->
+            <div class="tabs-content">
+                
+                <!-- Overview Tab -->
+                <div class="tab-pane active" id="tab-overview">
+                    <div class="dashboard-grid">
+                        <!-- Score Display Card -->
+                        <div class="glass-card" style="margin-bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                            <div class="score-circle-wrapper">
+                                <div class="svg-container">
+                                    <svg>
+                                        <defs>
+                                            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" stop-color="#818cf8" />
+                                                <stop offset="100%" stop-color="#6366f1" />
+                                            </linearGradient>
+                                        </defs>
+                                        <circle class="bg-circle" cx="95" cy="95" r="75"></circle>
+                                        <circle class="progress-circle" id="score-ring" cx="95" cy="95" r="75"></circle>
+                                    </svg>
+                                    <div class="score-text">
+                                        <div class="score-num" id="overview-score-num">--</div>
+                                        <div class="score-total">/100</div>
+                                    </div>
+                                </div>
+                                <div class="score-label" id="overview-score-label">Calculating...</div>
+                            </div>
+                        </div>
+
+                        <!-- Summary / Strengths & Weaknesses Cards -->
+                        <div class="glass-card" style="margin-bottom: 0;">
+                            <h3 style="color: var(--primary-light); margin-bottom: 10px; font-size: 1.35rem;">Evaluation Breakdown</h3>
+                            
+                            <div id="overview-summary-box" class="content-box" style="display: none; font-size: 0.95rem; margin-bottom: 15px;">
+                                <!-- Raw summary if parsing fails -->
+                            </div>
+
+                            <div class="evaluation-cards-container" id="evaluation-cards">
+                                <!-- Strengths Card -->
+                                <div class="eval-card strengths" id="eval-strengths" style="display: none;">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <div class="eval-card-content">
+                                        <h4>Key Strengths</h4>
+                                        <ul id="list-strengths"></ul>
+                                    </div>
+                                </div>
+
+                                <!-- Weaknesses Card -->
+                                <div class="eval-card weaknesses" id="eval-weaknesses" style="display: none;">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                    <div class="eval-card-content">
+                                        <h4>Areas for Improvement</h4>
+                                        <ul id="list-weaknesses"></ul>
+                                    </div>
+                                </div>
+
+                                <!-- Suggestions Card -->
+                                <div class="eval-card suggestions" id="eval-suggestions" style="display: none;">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                                    <div class="eval-card-content">
+                                        <h4>Actionable Suggestions</h4>
+                                        <ul id="list-suggestions"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Tab -->
+                <div class="tab-pane" id="tab-skills">
+                    <div class="glass-card">
+                        <h3 style="color: var(--primary-light); margin-bottom: 5px;">Extracted Skills</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">We detected these technical skills and proficiencies from your resume</p>
+                        <div id="skills-cloud" class="skills-container">
+                            <!-- Skill Pills -->
+                        </div>
+                    </div>
+
+                    <div class="glass-card">
+                        <h3 style="color: var(--primary-light); margin-bottom: 5px;">Local Database Match</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Matching rate against jobs configured in our catalog</p>
+                        <div id="jobs-match-list">
+                            <!-- Job Matches List -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommendations Tab -->
+                <div class="tab-pane" id="tab-recommendations">
+                    <div class="glass-card">
+                        <div class="recommendations-header-card">
+                            <div>
+                                <h3 style="color: var(--primary-light); margin-bottom: 5px;">AI Career Roadmap</h3>
+                                <p style="color: var(--text-secondary); font-size: 0.95rem;">Steps and paths to progress in your target career</p>
+                            </div>
+                            <div id="salary-highlight" style="display: none;">
+                                <div class="salary-badge" id="salary-badge-val">$0k - $0k</div>
+                            </div>
+                        </div>
+
+                        <div id="career-timeline" class="timeline">
+                            <!-- Timeline elements -->
+                        </div>
+
+                        <div id="career-insights-raw" class="content-box" style="display: none; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--card-border);">
+                            <!-- Raw Insights if timeline parser fails -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interview Prep Tab -->
+                <div class="tab-pane" id="tab-questions">
+                    <div class="glass-card">
+                        <h3 style="color: var(--primary-light); margin-bottom: 5px;">10 Tailored Interview Questions</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">Review practice questions generated for your skillset</p>
+                        <div id="questions-accordion">
+                            <!-- Accordion Items -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cover Letter Tab -->
+                <div class="tab-pane" id="tab-cover-letter">
+                    <div class="glass-card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <div>
+                                <h3 style="color: var(--primary-light); margin-bottom: 4px;">Tailored Cover Letter Draft</h3>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Tailored to your skills. You can click to edit details directly on the paper.</p>
+                            </div>
+                            <div class="copy-wrapper">
+                                <span id="copy-status-tooltip" class="copy-tooltip">Copied Successfully!</span>
+                                <button id="copy-btn" class="copy-btn">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                    <span>Copy Cover Letter</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="cover-letter-paper">
+                            <div id="cover-letter-box" class="letter-editable" contenteditable="true" spellcheck="false">
+                                <!-- Cover letter text -->
+                            </div>
+                            <div class="edit-badge">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                                <span>Interactive Paper Draft - Click anywhere to edit and personalize</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Professional Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🤖</span>
+                        <span class="logo-text">AI Career Agent</span>
+                    </div>
+                    <p class="footer-description">Transform your career with AI-powered resume analysis, job matching, and interview preparation.</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-heading">Features</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Resume Analysis</a></li>
+                        <li><a href="#">Skill Extraction</a></li>
+                        <li><a href="#">Job Matching</a></li>
+                        <li><a href="#">Interview Prep</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-heading">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-heading">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; AI Career Agent. All rights reserved.</p>
+                <p class="footer-tagline">Powered by Advanced AI Technology</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripting for UI Interaction and API Fetch -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scroll for navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Get Started button scrolls to upload section
+            const ctaBtn = document.querySelector('.cta-btn');
+            if (ctaBtn) {
+                ctaBtn.addEventListener('click', () => {
+                    const uploadCard = document.getElementById('upload-card');
+                    if (uploadCard) {
+                        uploadCard.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }
+                });
+            }
+
+            // Update active nav link on scroll
+            window.addEventListener('scroll', () => {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            const uploadForm = document.getElementById('upload-form');
+            const dropZone = document.getElementById('drop-zone');
+            const fileInput = document.getElementById('file-input');
+            const fileInfo = document.getElementById('file-info');
+            const selectedFilename = document.getElementById('selected-filename');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            const uploadCard = document.getElementById('upload-card');
+            const loader = document.getElementById('loader');
+            const resultContainer = document.getElementById('result-container');
+            const fallbackBadge = document.getElementById('fallback-badge');
+
+            // Steps for processing
+            const stepRead = document.getElementById('step-read');
+            const stepSkills = document.getElementById('step-skills');
+            const stepScore = document.getElementById('step-score');
+            const stepJobs = document.getElementById('step-jobs');
+            const stepLetter = document.getElementById('step-letter');
+
+            // Drag and Drop files
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    dropZone.classList.add('dragover');
+                }, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    dropZone.classList.remove('dragover');
+                }, false);
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                if(files.length > 0) {
+                    fileInput.files = files;
+                    handleFileSelection(files[0]);
+                }
+            });
+
+            dropZone.addEventListener('click', () => {
+                fileInput.click();
+            });
+
+            fileInput.addEventListener('change', (e) => {
+                if(e.target.files.length > 0) {
+                    handleFileSelection(e.target.files[0]);
+                }
+            });
+
+            function handleFileSelection(file) {
+                if (file.type !== "application/pdf") {
+                    alert("Please select a PDF file.");
+                    fileInput.value = "";
+                    submitBtn.disabled = true;
+                    fileInfo.style.display = "none";
+                    return;
+                }
+                selectedFilename.textContent = file.name;
+                fileInfo.style.display = "flex";
+                submitBtn.disabled = false;
+            }
+
+            // Tab logic
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.getAttribute('data-tab');
+                    
+                    tabButtons.forEach(b => b.classList.remove('active'));
+                    tabPanes.forEach(p => p.classList.remove('active'));
+
+                    btn.classList.add('active');
+                    document.getElementById(`tab-${tabId}`).classList.add('active');
+                });
+            });
+
+            // Form Submit (AJAX Fetch)
+            uploadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const file = fileInput.files[0];
+                if (!file) return;
+
+                // Hide Upload Zone, Show Loader
+                uploadCard.style.display = 'none';
+                loader.style.display = 'flex';
+                
+                // Reset steps
+                resetSteps();
+
+                const formData = new FormData();
+                formData.append('resume', file);
+
+                // Simulate progress step timing based on network response chunks
+                let stepTimer;
+                let currentStepIndex = 0;
+                const steps = [stepRead, stepSkills, stepScore, stepJobs, stepLetter];
+                
+                function nextStep() {
+                    if (currentStepIndex < steps.length - 1) {
+                        steps[currentStepIndex].classList.remove('active');
+                        steps[currentStepIndex].classList.add('completed');
+                        currentStepIndex++;
+                        steps[currentStepIndex].classList.add('active');
+                    }
+                }
+
+                // Smoothly update steps to feel interactive
+                stepTimer = setInterval(nextStep, 2500);
+
+                try {
+                    const response = await fetch('/upload', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    clearInterval(stepTimer);
+
+                    if (!response.ok) {
+                        throw new Error(`Upload failed: ${response.statusText}`);
+                    }
+
+                    const data = await response.json();
+                    
+                    // Mark all steps as complete
+                    steps.forEach(step => {
+                        step.classList.remove('active');
+                        step.classList.add('completed');
+                    });
+
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                        renderDashboard(data);
+                    }, 500);
+
+                } catch (error) {
+                    clearInterval(stepTimer);
+                    console.error("Analysis Error:", error);
+                    alert("An error occurred during resume analysis. Please check that app is running.");
+                    loader.style.display = 'none';
+                    uploadCard.style.display = 'block';
+                }
+            });
+
+            function resetSteps() {
+                const steps = [stepRead, stepSkills, stepScore, stepJobs, stepLetter];
+                steps.forEach((step, idx) => {
+                    step.classList.remove('active', 'completed');
+                    if(idx === 0) step.classList.add('active');
+                });
+            }
+
+            // Circular progress ring animation
+            function setScoreCircle(score) {
+                const ring = document.getElementById('score-ring');
+                const scoreNum = document.getElementById('overview-score-num');
+                const scoreLabel = document.getElementById('overview-score-label');
+                
+                // Circle radius is 75, circumference is 2 * PI * 75 = 471.24 approx
+                const circumference = 471.24;
+                ring.style.strokeDasharray = `${circumference}`;
+                ring.style.strokeDashoffset = `${circumference}`;
+                
+                // Animate offset
+                const offset = circumference - (score / 100) * circumference;
+                
+                setTimeout(() => {
+                    ring.style.strokeDashoffset = offset;
+                }, 100);
+
+                // Animate count up
+                let startScore = 0;
+                const timer = setInterval(() => {
+                    if(startScore >= score) {
+                        clearInterval(timer);
+                        scoreNum.textContent = score;
+                    } else {
+                        startScore++;
+                        scoreNum.textContent = startScore;
+                    }
+                }, 15);
+
+                // Set Badge level
+                scoreLabel.classList.remove('score-under', 'score-mid', 'score-good');
+                if (score >= 80) {
+                    scoreLabel.textContent = "Excellent Match";
+                    scoreLabel.classList.add('score-good');
+                } else if (score >= 60) {
+                    scoreLabel.textContent = "Good Match";
+                    scoreLabel.classList.add('score-mid');
+                } else {
+                    scoreLabel.textContent = "Needs Improvement";
+                    scoreLabel.classList.add('score-under');
+                }
+            }
+
+            // Populate dashboard fields
+            function renderDashboard(data) {
+                // Check if AI fell back
+                if (data.ai_jobs.includes("unavailable") || data.resume_score.includes("unavailable")) {
+                    fallbackBadge.style.display = 'flex';
+                } else {
+                    fallbackBadge.style.display = 'none';
+                }
+
+                // 1. Extract and set numerical score
+                let numericScore = 65; // default fallback score
+                if (data.resume_score) {
+                    const matches = data.resume_score.match(/(\d+)\s*\/\s*100/);
+                    if (matches && matches[1]) {
+                        numericScore = parseInt(matches[1]);
+                    } else {
+                        // try to find any raw number in score text
+                        const rawMatches = data.resume_score.match(/\b([1-9]\d|100)\b/);
+                        if (rawMatches && rawMatches[0]) {
+                            numericScore = parseInt(rawMatches[0]);
+                        }
+                    }
+                }
+                setScoreCircle(numericScore);
+
+                // 2. Parse score text into Strengths, Weaknesses, Suggestions
+                parseAndRenderScoreBreakdown(data.resume_score);
+
+                // 3. Skills Pill tags
+                const skillsCloud = document.getElementById('skills-cloud');
+                skillsCloud.innerHTML = "";
+                if(data.skills) {
+                    const skillLines = data.skills.split('\n');
+                    let count = 0;
+                    skillLines.forEach(line => {
+                        let clean = line.replace(/^[\s*\-•\d\.]+/g, '').trim();
+                        if (clean.length > 1) {
+                            count++;
+                            const badge = document.createElement('span');
+                            badge.className = 'skill-tag';
+                            badge.textContent = clean;
+                            skillsCloud.appendChild(badge);
+                        }
+                    });
+                    if (count === 0) {
+                        skillsCloud.innerHTML = "<p style='color: var(--text-secondary);'>No specific skills detected.</p>";
+                    }
+                } else {
+                    skillsCloud.innerHTML = "<p style='color: var(--text-secondary);'>No skills extracted.</p>";
+                }
+
+                // 4. Local jobs matches with linear fill animation
+                const jobsMatchList = document.getElementById('jobs-match-list');
+                jobsMatchList.innerHTML = "";
+                if (data.jobs && data.jobs.length > 0) {
+                    const maxScore = Math.max(...data.jobs.map(j => j.score), 1);
+                    data.jobs.forEach(job => {
+                        const percent = Math.round((job.score / maxScore) * 100);
+                        const item = document.createElement('div');
+                        item.className = 'job-match-item';
+                        item.innerHTML = `
+                            <div class="job-match-info">
+                                <h4>${job.title}</h4>
+                                <p style="font-size:0.85rem; color:var(--text-muted)">Matches ${job.score} registered skills</p>
+                            </div>
+                            <div class="job-match-score">
+                                <span>${percent}%</span>
+                                <div class="job-bar-bg">
+                                    <div class="job-bar-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        `;
+                        jobsMatchList.appendChild(item);
+                        // Trigger fill transition
+                        setTimeout(() => {
+                            item.querySelector('.job-bar-fill').style.width = `${percent}%`;
+                        }, 200);
+                    });
+                } else {
+                    jobsMatchList.innerHTML = "<p style='color: var(--text-secondary); padding: 15px;'>No job matching records available.</p>";
+                }
+
+                // 5. Parse AI Career insights into Roadmap timeline & salary badge
+                parseAndRenderCareerRecommendations(data.ai_jobs);
+
+                // 6. Cover Letter
+                const coverLetterBox = document.getElementById('cover-letter-box');
+                coverLetterBox.textContent = data.cover_letter;
+
+                // 7. Interview Questions with Answers (Direct Display)
+                const accordion = document.getElementById('questions-accordion');
+                accordion.innerHTML = "";
+                
+                if (data.interview_questions) {
+                    const parsedQuestions = parseQuestionsText(data.interview_questions);
+                    if (parsedQuestions.length > 0) {
+                        parsedQuestions.forEach((q, idx) => {
+                            const item = document.createElement('div');
+                            item.className = 'question-answer-item';
+                            item.innerHTML = `
+                                <div class="question-block">
+                                    <strong>Q${idx + 1}:</strong> ${q.question}
+                                </div>
+                                <div class="answer-block">
+                                    <strong>Answer:</strong> ${q.answer}
+                                </div>
+                            `;
+                            accordion.appendChild(item);
+                        });
+                    } else {
+                        accordion.innerHTML = `<pre style="white-space: pre-wrap; color: var(--text-secondary); font-size: 0.95rem;">${data.interview_questions}</pre>`;
+                    }
+                } else {
+                    accordion.innerHTML = "<p style='color: var(--text-secondary);'>No questions generated.</p>";
+                }
+
+                // Show Results container
+                resultContainer.style.display = 'block';
+            }
+
+            // Parser for Score Breakdown (Strengths, Weaknesses, Suggestions)
+            function parseAndRenderScoreBreakdown(text) {
+                const summaryBox = document.getElementById('overview-summary-box');
+                const evalCards = document.getElementById('evaluation-cards');
+                const cardStrengths = document.getElementById('eval-strengths');
+                const cardWeaknesses = document.getElementById('eval-weaknesses');
+                const cardSuggestions = document.getElementById('eval-suggestions');
+
+                const listStrengths = document.getElementById('list-strengths');
+                const listWeaknesses = document.getElementById('list-weaknesses');
+                const listSuggestions = document.getElementById('list-suggestions');
+
+                listStrengths.innerHTML = "";
+                listWeaknesses.innerHTML = "";
+                listSuggestions.innerHTML = "";
+
+                if (!text) {
+                    summaryBox.style.display = "block";
+                    summaryBox.textContent = "No assessment feedback received.";
+                    evalCards.style.display = "none";
+                    return;
+                }
+
+                const strengths = [];
+                const weaknesses = [];
+                const suggestions = [];
+
+                let currentSection = null;
+                const lines = text.split('\n');
+
+                lines.forEach(line => {
+                    const cleanLine = line.trim();
+                    if (!cleanLine) return;
+
+                    const lowerLine = cleanLine.toLowerCase();
+
+                    // Detect section headers
+                    if (lowerLine.includes('strength')) {
+                        currentSection = 'strengths';
+                        return;
+                    }
+                    if (lowerLine.includes('weakness')) {
+                        currentSection = 'weaknesses';
+                        return;
+                    }
+                    if (lowerLine.includes('suggestion') || lowerLine.includes('improvement') || lowerLine.includes('improve')) {
+                        currentSection = 'suggestions';
+                        return;
+                    }
+
+                    // Extract items
+                    const content = cleanLine.replace(/^[\s*\-•\d\.\:]+/g, '').trim();
+                    // Avoid inserting generic layout items or titles
+                    if (content.length > 5 && !lowerLine.startsWith('give') && !lowerLine.includes('resume score') && !lowerLine.includes('overall score')) {
+                        if (currentSection === 'strengths') strengths.push(content);
+                        else if (currentSection === 'weaknesses') weaknesses.push(content);
+                        else if (currentSection === 'suggestions') suggestions.push(content);
+                    }
+                });
+
+                // Render lists if parsed successfully
+                if (strengths.length > 0 || weaknesses.length > 0 || suggestions.length > 0) {
+                    summaryBox.style.display = "none";
+                    evalCards.style.display = "grid";
+
+                    if (strengths.length > 0) {
+                        strengths.forEach(s => {
+                            const li = document.createElement('li');
+                            li.textContent = s;
+                            listStrengths.appendChild(li);
+                        });
+                        cardStrengths.style.display = "flex";
+                    } else {
+                        cardStrengths.style.display = "none";
+                    }
+
+                    if (weaknesses.length > 0) {
+                        weaknesses.forEach(w => {
+                            const li = document.createElement('li');
+                            li.textContent = w;
+                            listWeaknesses.appendChild(li);
+                        });
+                        cardWeaknesses.style.display = "flex";
+                    } else {
+                        cardWeaknesses.style.display = "none";
+                    }
+
+                    if (suggestions.length > 0) {
+                        suggestions.forEach(sg => {
+                            const li = document.createElement('li');
+                            li.textContent = sg;
+                            listSuggestions.appendChild(li);
+                        });
+                        cardSuggestions.style.display = "flex";
+                    } else {
+                        cardSuggestions.style.display = "none";
+                    }
+                } else {
+                    // Fallback to print as a block of text
+                    summaryBox.style.display = "block";
+                    summaryBox.innerHTML = formatMarkdownText(text);
+                    evalCards.style.display = "none";
+                }
+            }
+
+            // Parser for Career Recommendations (Timeline + Salary)
+            function parseAndRenderCareerRecommendations(text) {
+                const timeline = document.getElementById('career-timeline');
+                const rawInsights = document.getElementById('career-insights-raw');
+                const salaryHighlight = document.getElementById('salary-highlight');
+                const salaryBadgeVal = document.getElementById('salary-badge-val');
+
+                timeline.innerHTML = "";
+                rawInsights.innerHTML = "";
+                salaryHighlight.style.display = "none";
+
+                if (!text) {
+                    rawInsights.style.display = "block";
+                    rawInsights.textContent = "No recommendations received.";
+                    return;
+                }
+
+                // Remove note section if present
+                text = text.replace(/Note:.*?(?=\n\n|\nStep|\nPhase|$)/gis, '');
+
+                // 1. Try to extract salary range (e.g. $80,000 - $110,000 or $80k-$120k)
+                const salaryRegex = /(\$\d+[\d,]*\s*(?:-\s*\$\d+[\d,]*|k\s*-\s*\$\d+k|\s*to\s*\$\d+[\d,]*|\s*per\s*year)?)/gi;
+                const salaryMatches = text.match(salaryRegex);
+                if (salaryMatches && salaryMatches.length > 0) {
+                    // Pull the most complete range found
+                    let bestMatch = salaryMatches[0];
+                    salaryMatches.forEach(m => {
+                        if (m.length > bestMatch.length) bestMatch = m;
+                    });
+                    
+                    salaryBadgeVal.textContent = bestMatch.trim();
+                    salaryHighlight.style.display = "block";
+                }
+
+                // 2. Parse roadmap steps/phases (e.g., "Step 1: ...", "Phase 1: ...", "1. Role: ...")
+                const steps = [];
+                // Split by step or phase boundaries
+                const lines = text.split('\n');
+                let currentItem = null;
+
+                lines.forEach(line => {
+                    const cleanLine = line.trim();
+                    if (!cleanLine) return;
+
+                    // Match step numbers or phase headers
+                    const stepHeaderMatch = cleanLine.match(/^(?:step|phase|pathway|\b\d\b)\s*[\d]*\s*[\.\:\-\)]\s*(.*)/i);
+                    
+                    if (stepHeaderMatch) {
+                        if (currentItem) steps.push(currentItem);
+                        
+                        // Clean up numbers from title
+                        let title = stepHeaderMatch[1].replace(/^\s*[\-\:\.\(\)]+/g, '').trim();
+                        if (!title) {
+                            title = cleanLine;
+                        }
+
+                        currentItem = {
+                            title: title,
+                            description: ""
+                        };
+                    } else if (currentItem) {
+                        const cleaned = cleanLine.replace(/^[\s*\-•]+/g, '').trim();
+                        if (cleaned) {
+                            currentItem.description += (currentItem.description ? " " : "") + cleaned;
+                        }
+                    }
+                });
+
+                if (currentItem) steps.push(currentItem);
+
+                // If we found chronological steps, render as a timeline
+                if (steps.length > 1) {
+                    rawInsights.style.display = "none";
+                    steps.forEach(step => {
+                        const div = document.createElement('div');
+                        div.className = 'timeline-item';
+                        div.innerHTML = `
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>${step.title}</h4>
+                                ${step.description ? `<p>${step.description}</p>` : ''}
+                            </div>
+                        `;
+                        timeline.appendChild(div);
+                    });
+                } else {
+                    // Fallback to raw formatted block
+                    rawInsights.style.display = "block";
+                    rawInsights.innerHTML = formatMarkdownText(text);
+                }
+            }
+
+            // Parse Q&A string from AI
+            function parseQuestionsText(text) {
+                const items = [];
+                // Divide questions based on numeric numbering followed by dot.
+                const segments = text.split(/(?=\b\d+[\.\:\)])/);
+                segments.forEach(segment => {
+                    const cleanSegment = segment.trim();
+                    if (!cleanSegment) return;
+                    
+                    // Separate question body and description/answer text if exist
+                    const parts = cleanSegment.split(/(?=\bAnswer:|\bAns:|\bA:|\bDescription:)/i);
+                    const qText = parts[0].replace(/^\d+[\.\:\)\s]+/g, '').trim();
+                    let aText = parts[1] ? parts[1].replace(/^\b(Answer|Ans|A|Description):\s*/i, '').trim() : "Focus on demonstrating your technical competence, project work, and troubleshooting methodologies when answering questions about this skillset.";
+                    
+                    if (qText.length > 5) {
+                        items.push({
+                            question: qText,
+                            answer: aText
+                        });
+                    }
+                });
+                return items;
+            }
+
+            // Simple markdown formatting helper to styling text from LLM
+            function formatMarkdownText(text) {
+                if(!text) return "";
+                let formatted = text
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;");
+                
+                // Replace markdown bold
+                formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                // Replace lists
+                formatted = formatted.replace(/^\s*[\-\*•]\s+(.*)$/gm, '<li>$1</li>');
+                // Wrap consecutive <li> in <ul>
+                formatted = formatted.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+                
+                // Convert double newlines to paragraph tags
+                formatted = formatted.split(/\n{2,}/).map(para => {
+                    if (para.startsWith('<li>') || para.startsWith('<ul>')) {
+                        return para;
+                    }
+                    return `<p>${para.replace(/\n/g, '<br>')}</p>`;
+                }).join('');
+
+                return formatted;
+            }
+
+            // Demo Mode Event Listener
+            const demoBtn = document.getElementById('demo-btn');
+            demoBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Show Loader
+                uploadCard.style.display = 'none';
+                loader.style.display = 'flex';
+                
+                resetSteps();
+                
+                const steps = [stepRead, stepSkills, stepScore, stepJobs, stepLetter];
+                let currentStepIndex = 0;
+                
+                const timer = setInterval(() => {
+                    if (currentStepIndex < steps.length - 1) {
+                        steps[currentStepIndex].classList.remove('active');
+                        steps[currentStepIndex].classList.add('completed');
+                        currentStepIndex++;
+                        steps[currentStepIndex].classList.add('active');
+                    } else {
+                        clearInterval(timer);
+                        steps[currentStepIndex].classList.remove('active');
+                        steps[currentStepIndex].classList.add('completed');
+                        
+                        setTimeout(() => {
+                            loader.style.display = 'none';
+                            renderDashboard(getMockData());
+                        }, 500);
+                    }
+                }, 700);
+            });
+
+            function getMockData() {
+                return {
+                    "skills": "Python\nReact\nNode.js\nExpress\nMongoDB\nDocker\nGit\nAWS\nRESTful APIs\nGraphQL\nTypeScript\nCI/CD",
+                    "jobs": [
+                        {"title": "Full Stack Developer", "score": 10},
+                        {"title": "Backend Developer", "score": 8},
+                        {"title": "Python Developer", "score": 6},
+                        {"title": "Frontend Developer", "score": 5}
+                    ],
+                    "ai_jobs": "Salary Range: $95,000 - $125,000 per year\n\nStep 1: Junior Full Stack Engineer\nGain experience building component libraries in React and core APIs in Node.js.\n\nStep 2: Senior Full Stack Architect\nLead developer teams, configure Kubernetes clusters, and architect serverless infrastructures on AWS.\n\nStep 3: Principal Engineering Lead\nDrive technological strategy, manage code quality audits, and design scalable enterprise application architectures.",
+                    "resume_score": "Overall score: 85/100\n\nKey Strengths:\n- Proficient in both modern frontend (React) and backend (Python, Node.js) development environments.\n- Demonstrated knowledge of containerization using Docker and cloud hosting platforms like AWS.\n- Strong version control practices with clean GIT histories.\n\nAreas for Improvement:\n- Lacks formal certification in AWS or other cloud frameworks.\n- Resume does not highlight specific performance metrics or business outcomes (e.g. system latency improvements).\n\nActionable Suggestions:\n- Quantify achievements, such as stating 'reduced API response times by 30% using Redis caching'.\n- Add a section on system design and database indexing techniques to strengthen backend appeal.",
+                    "interview_questions": "1. Can you explain the difference between virtual DOM and real DOM in React?\nAnswer: React uses a virtual representation of the DOM which is synced with the real DOM using a reconciliation algorithm, minimizing direct updates and boosting performance. The virtual DOM is a lightweight JavaScript object that's a copy of the real DOM. When state changes, React creates a new virtual DOM tree, compares it with the previous one, and only updates the real DOM with the differences.\n\n2. How do you manage connection pooling in MongoDB with Node.js?\nAnswer: Connection pooling is handled by reusing the initial client db instance across routes instead of creating new client sessions for each query. The MongoDB driver maintains a pool of connections that can be reused, reducing the overhead of establishing new connections. You can configure pool size and timeout settings in the connection options.\n\n3. What strategies do you use to secure a Python Flask REST API?\nAnswer: Implementing JWT token validation, setting proper CORS policies, enforcing HTTPS, and sanitizing input parameters to prevent injection attacks. Additionally, use rate limiting, implement proper authentication middleware, validate all incoming data, keep dependencies updated, and use environment variables for sensitive configuration.\n\n4. How does Docker containerization benefit a CI/CD development cycle?\nAnswer: Containerization guarantees consistency across development, staging, and production environments, eliminating 'works on my machine' errors. Docker containers package applications with all dependencies, ensuring they run identically everywhere. This simplifies deployment, enables easy scaling, and allows for efficient resource utilization through container orchestration.\n\n5. Explain the difference between horizontal and vertical scaling.\nAnswer: Vertical scaling increases the power (CPU, RAM) of a single server, while horizontal scaling adds more servers to handle system load distributed via a load balancer. Vertical scaling has limits due to hardware constraints, while horizontal scaling can theoretically continue indefinitely by adding more servers.\n\n6. What is the purpose of middleware in Express.js?\nAnswer: Middleware functions are functions that have access to the request object (req), response object (res), and the next middleware function in the application's request-response cycle. They can execute code, modify req and res objects, end the request-response cycle, and call the next middleware. Common uses include logging, authentication, parsing request bodies, and error handling.\n\n7. How do you implement authentication in a React application?\nAnswer: Authentication in React can be implemented using JWT tokens stored in localStorage or cookies, context API for managing auth state, and protected routes that check authentication status before rendering. You can use libraries like Auth0, Firebase Auth, or build custom authentication with backend APIs. Always use HTTPS and implement proper token refresh mechanisms.\n\n8. What are the key differences between SQL and NoSQL databases?\nAnswer: SQL databases are relational, use structured schema, support complex queries with JOINs, and are best for structured data with relationships. NoSQL databases are non-relational, have flexible schema, scale horizontally better, and are ideal for unstructured or semi-structured data. Choose SQL for ACID compliance and complex relationships, NoSQL for flexibility and horizontal scaling.\n\n9. How do you handle state management in large React applications?\nAnswer: For large applications, use state management libraries like Redux, Context API with hooks, or Zustand. Redux provides a predictable state container with middleware support. Context API is built into React and works well for medium-sized apps. Choose based on complexity, team size, and performance requirements. Consider using React Query for server state management.\n\n10. What is the difference between PUT and PATCH HTTP methods?\nAnswer: PUT updates the entire resource with the provided data, while PATCH updates only the specified fields. PUT is idempotent (multiple requests have the same effect), while PATCH may not be. Use PUT when you need to replace the entire resource, and PATCH when you only need to modify specific fields.\n\n11. How do you optimize database queries for better performance?\nAnswer: Optimize by creating appropriate indexes, using EXPLAIN to analyze query plans, avoiding SELECT *, using proper JOINs, implementing caching strategies, denormalizing when appropriate, and using query batching. Monitor slow queries and use database-specific optimization techniques like partitioning for large datasets.\n\n12. What is the purpose of Webpack in modern JavaScript development?\nAnswer: Webpack is a module bundler that takes modules with dependencies and generates static assets representing those modules. It bundles JavaScript files, transforms assets like CSS and images, handles code splitting for lazy loading, and provides a development server with hot module replacement. It's essential for building complex single-page applications.\n\n13. How do you implement real-time features in web applications?\nAnswer: Real-time features can be implemented using WebSockets for bidirectional communication, Server-Sent Events (SSE) for server-to-client updates, or polling as a fallback. Libraries like Socket.io simplify WebSocket implementation with automatic fallbacks. Use cases include chat applications, live notifications, collaborative editing, and real-time dashboards.\n\n14. What are the best practices for error handling in Node.js applications?\nAnswer: Use try-catch blocks for synchronous code, .catch() for promises, and error-handling middleware for Express. Always handle errors at each level, use proper logging, provide meaningful error messages to users while logging detailed errors for developers, and implement graceful degradation. Never expose stack traces in production.\n\n15. How do you ensure code quality in a development team?\nAnswer: Implement code reviews, use linters and formatters like ESLint and Prettier, write unit and integration tests, use CI/CD pipelines for automated testing, follow coding standards, document code, conduct pair programming sessions, and use static analysis tools. Regular refactoring and knowledge sharing sessions also help maintain code quality.",
+                    "cover_letter": "Dear Hiring Team,\n\nI am writing to express my enthusiastic interest in the Full Stack Developer position. With my background in Python, React, and Node.js, along with experience managing cloud deployments on AWS and containerization using Docker, I am confident in my ability to make an immediate impact on your engineering division.\n\nThroughout my career, I have focused on building highly responsive client interfaces and designing robust, scalable backend microservices. I thrive on solving complex system design challenges and optimizing application performance.\n\nThank you for your time and consideration. I look forward to the opportunity to discuss how my technical expertise aligns with your team's objectives.\n\nSincerely,\nDemo Candidate"
+                };
+            }
+
+            // Reset back to upload page
+            const resetBtn = document.getElementById('reset-btn');
+            resetBtn.addEventListener('click', () => {
+                resultContainer.style.display = 'none';
+                uploadForm.reset();
+                fileInfo.style.display = 'none';
+                submitBtn.disabled = true;
+                uploadCard.style.display = 'block';
+            });
+
+            // Copy to Clipboard cover letter
+            const copyBtn = document.getElementById('copy-btn');
+            const copyStatusTooltip = document.getElementById('copy-status-tooltip');
+            
+            copyBtn.addEventListener('click', () => {
+                const coverLetterBox = document.getElementById('cover-letter-box');
+                
+                // Since it's contenteditable, we select text content
+                const text = coverLetterBox.innerText;
+                
+                navigator.clipboard.writeText(text).then(() => {
+                    // Show Tooltip
+                    copyStatusTooltip.style.display = 'block';
+                    setTimeout(() => {
+                        copyStatusTooltip.style.display = 'none';
+                    }, 2500);
+                }).catch(err => {
+                    console.error('Could not copy text: ', err);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
