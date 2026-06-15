@@ -8,11 +8,17 @@ The system analyzes uploaded resumes and provides intelligent career guidance in
 
 ## 📸 Screenshots
 
-*(Replace these placeholder images with actual screenshots of your project)*
-
-| Home Page | Results Dashboard |
+| Home Page | Skills & Match |
 | :---: | :---: |
-| ![Home Page](images/home_page.png) | ![Results Dashboard](images/results.png) |
+| ![Home Page](images/homepage.jpeg) | ![Skills & Match](images/skills-and-match.jpeg) |
+
+| Resume Assessment | Interview Preparation |
+| :---: | :---: |
+| ![Resume Assessment](images/resume-assessment-page.jpeg) | ![Interview Preparation](images/interview-preaparation-page.jpeg) |
+
+| Cover Letter | Career Roadmap |
+| :---: | :---: |
+| ![Cover Letter](images/cover-letter-page.jpeg) | ![Career Roadmap](images/carrer-roadmap.jpeg) |
 
 ---
 
