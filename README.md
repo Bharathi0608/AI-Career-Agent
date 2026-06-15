@@ -6,6 +6,16 @@ The system analyzes uploaded resumes and provides intelligent career guidance in
 
 ---
 
+## 📸 Screenshots
+
+*(Replace these placeholder images with actual screenshots of your project)*
+
+| Home Page | Results Dashboard |
+| :---: | :---: |
+| ![Home Page](images/home_page.png) | ![Results Dashboard](images/results.png) |
+
+---
+
 ## 📌 Features
 
 ### 🔍 Resume Skill Extraction
@@ -112,6 +122,7 @@ Results Dashboard
 ```text
 AI-Career-Agent/
 │
+├── images/
 ├── app.py
 ├── agents.py
 ├── resume_agent.py
