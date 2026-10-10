@@ -6,9 +6,14 @@ from langchain_groq import ChatGroq
 
 load_dotenv()
 
+api_key = os.getenv("GROQ_API_KEY")
+
+if not api_key:
+    raise RuntimeError("GROQ_API_KEY is missing from environment variables")
+
 llm = ChatGroq(
     model="llama-3.1-8b-instant",
-    api_key=os.getenv("GROQ_API_KEY")
+    api_key=api_key
 )
 
 def extract_skills_ai(resume_text):
