@@ -28,7 +28,10 @@ def clean_markdown(text):
         return text
     return text.replace("**", "")
 
-UPLOAD_FOLDER = "uploads"
+
+UPLOAD_FOLDER = "/tmp/uploads"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
 
 
 def read_resume(file_path):
