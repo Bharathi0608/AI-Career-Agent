@@ -1166,37 +1166,105 @@ function parseAndRenderCareerRecommendations(text) {
             // }
             
 
+// function parseQuestionsText(text) {
+//     if (!text) return [];
+
+//     const normalized = text
+//         .replace(/\r\n/g, "\n")
+//         .replace(/\*\*/g, "")
+//         .trim();
+
+//     // Recognize numbered questions, including Q1: and 1.
+//     const segments = normalized.split(
+//         /(?=(?:^|\n)\s*(?:Q\s*)?\d{1,2}\s*[\.\:)]+\s*)/i
+//     );
+
+//     const items = [];
+
+//     segments.forEach(segment => {
+//         const cleanSegment = segment.trim();
+//         if (!cleanSegment) return;
+
+//         const questionMatch = cleanSegment.match(
+//             /^(?:Q\s*)?\d{1,2}\s*[\.\:)]+\s*([\s\S]+)$/i
+//         );
+
+//         if (!questionMatch) return;
+
+//         const body = questionMatch[1].trim();
+
+//         // Recognize answers on the same line or following lines.
+//         const answerMatch = body.match(
+//             /(?:^|\n|\s+)(?:Answer|Ans|Suggested Answer|Sample Answer)\s*[:\-]\s*/i
+//         );
+
+//         let question = body;
+//         let answer = "";
+
+//         if (answerMatch) {
+//             question = body.slice(0, answerMatch.index).trim();
+//             answer = body.slice(
+//                 answerMatch.index + answerMatch[0].length
+//             ).trim();
+//         }
+
+//         // Also handle Question? Answer: ... where the label follows
+//         // punctuation without a line break.
+//         if (!answerMatch) {
+//             const inlineMatch = body.match(
+//                 /([?.!])\s+(Answer|Ans|Suggested Answer|Sample Answer)\s*:\s*/i
+//             );
+
+//             if (inlineMatch) {
+//                 const splitAt = inlineMatch.index + inlineMatch[1].length;
+//                 question = body.slice(0, splitAt).trim();
+//                 answer = body.slice(
+//                     splitAt + inlineMatch[0].length - inlineMatch[1].length
+//                 ).trim();
+//             }
+//         }
+
+//         if (question.length > 5) {
+//             items.push({
+//                 question,
+//                 answer: answer || "Answer not found in the AI response."
+//             });
+//         }
+//     });
+
+//     return items;
+// }
+
+            
 function parseQuestionsText(text) {
-    if (!text) return [];
+    if (!text || !text.trim()) return [];
 
     const normalized = text
         .replace(/\r\n/g, "\n")
         .replace(/\*\*/g, "")
+        .replace(/```[\w]*\n?/g, "")
         .trim();
 
-    // Recognize numbered questions, including Q1: and 1.
+    // Split before numbered questions such as "1.", "1)", or "Q1:".
     const segments = normalized.split(
-        /(?=(?:^|\n)\s*(?:Q\s*)?\d{1,2}\s*[\.\:)]+\s*)/i
+        /(?=(?:^|\n)\s*(?:Q\s*)?\d{1,2}\s*[\.\):]\s*)/i
     );
 
-    const items = [];
+    const results = [];
 
-    segments.forEach(segment => {
-        const cleanSegment = segment.trim();
-        if (!cleanSegment) return;
-
-        const questionMatch = cleanSegment.match(
-            /^(?:Q\s*)?\d{1,2}\s*[\.\:)]+\s*([\s\S]+)$/i
+    for (const segment of segments) {
+        const match = segment.trim().match(
+            /^(?:Q\s*)?\d{1,2}\s*[\.\):]\s*([\s\S]+)$/i
         );
 
-        if (!questionMatch) return;
+        if (!match) continue;
 
-        const body = questionMatch[1].trim();
+        const body = match[1].trim();
 
-        // Recognize answers on the same line or following lines.
-        const answerMatch = body.match(
-            /(?:^|\n|\s+)(?:Answer|Ans|Suggested Answer|Sample Answer)\s*[:\-]\s*/i
-        );
+        const answerPattern =
+            /(?:^|\n)\s*(?:Answer|Suggested Answer|Sample Answer|Ans)\s*:\s*/i;
+
+        const answerMatch = answerPattern.exec(body);
 
         let question = body;
         let answer = "";
@@ -1208,32 +1276,29 @@ function parseQuestionsText(text) {
             ).trim();
         }
 
-        // Also handle Question? Answer: ... where the label follows
-        // punctuation without a line break.
-        if (!answerMatch) {
-            const inlineMatch = body.match(
-                /([?.!])\s+(Answer|Ans|Suggested Answer|Sample Answer)\s*:\s*/i
+        // Handle "Question? Answer: ..." on a single line.
+        if (!answer && /\b(?:Answer|Suggested Answer|Sample Answer|Ans)\s*:/i.test(body)) {
+            const inline = body.match(
+                /^(.*?)\s+(?:Answer|Suggested Answer|Sample Answer|Ans)\s*:\s*([\s\S]*)$/i
             );
 
-            if (inlineMatch) {
-                const splitAt = inlineMatch.index + inlineMatch[1].length;
-                question = body.slice(0, splitAt).trim();
-                answer = body.slice(
-                    splitAt + inlineMatch[0].length - inlineMatch[1].length
-                ).trim();
+            if (inline) {
+                question = inline[1].trim();
+                answer = inline[2].trim();
             }
         }
 
         if (question.length > 5) {
-            items.push({
-                question,
+            results.push({
+                question: question.replace(/\n+/g, " "),
                 answer: answer || "Answer not found in the AI response."
             });
         }
-    });
+    }
 
-    return items;
+    return results;
 }
+
 
 
             // Simple markdown formatting helper to styling text from LLM
