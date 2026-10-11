@@ -19,8 +19,15 @@ class ResumeState(TypedDict):
     cover_letter: str
 
 
-def extract_node(state):
-    state["skills"] = extract_skills_ai(state["resume_text"])
+# def extract_node(state):
+#     state["skills"] = extract_skills_ai(state["resume_text"])
+#     return state
+
+def jobs_node(state):
+    state["jobs"] = suggest_jobs_ai(
+        state["skills"],
+        state["resume_text"]
+    )
     return state
 
 
