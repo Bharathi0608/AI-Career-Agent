@@ -1165,18 +1165,18 @@ function parseAndRenderCareerRecommendations(text) {
             //     return items;
             // }
             
+
 function parseQuestionsText(text) {
     if (!text) return [];
 
-    // Normalize line endings and remove common Markdown markers.
     const normalized = text
         .replace(/\r\n/g, "\n")
         .replace(/\*\*/g, "")
         .trim();
 
-    // Split only where a numbered question begins at a line start.
+    // Recognize numbered questions, including Q1: and 1.
     const segments = normalized.split(
-        /(?:^|\n)\s*(?=\d{1,2}[\.\:)]+\s*)/
+        /(?=(?:^|\n)\s*(?:Q\s*)?\d{1,2}\s*[\.\:)]+\s*)/i
     );
 
     const items = [];
@@ -1186,31 +1186,48 @@ function parseQuestionsText(text) {
         if (!cleanSegment) return;
 
         const questionMatch = cleanSegment.match(
-            /^\d{1,2}[\.\:)]+\s*([\s\S]+)$/
+            /^(?:Q\s*)?\d{1,2}\s*[\.\:)]+\s*([\s\S]+)$/i
         );
 
         if (!questionMatch) return;
 
         const body = questionMatch[1].trim();
 
+        // Recognize answers on the same line or following lines.
         const answerMatch = body.match(
-            /(?:^|\n)\s*(?:Answer|Ans)\s*:\s*([\s\S]*)/i
+            /(?:^|\n|\s+)(?:Answer|Ans|Suggested Answer|Sample Answer)\s*[:\-]\s*/i
         );
 
-        const question = (
-            answerMatch
-                ? body.slice(0, answerMatch.index)
-                : body
-        ).trim();
+        let question = body;
+        let answer = "";
 
-        const answer = answerMatch
-            ? answerMatch[1].trim()
-            : "";
+        if (answerMatch) {
+            question = body.slice(0, answerMatch.index).trim();
+            answer = body.slice(
+                answerMatch.index + answerMatch[0].length
+            ).trim();
+        }
+
+        // Also handle Question? Answer: ... where the label follows
+        // punctuation without a line break.
+        if (!answerMatch) {
+            const inlineMatch = body.match(
+                /([?.!])\s+(Answer|Ans|Suggested Answer|Sample Answer)\s*:\s*/i
+            );
+
+            if (inlineMatch) {
+                const splitAt = inlineMatch.index + inlineMatch[1].length;
+                question = body.slice(0, splitAt).trim();
+                answer = body.slice(
+                    splitAt + inlineMatch[0].length - inlineMatch[1].length
+                ).trim();
+            }
+        }
 
         if (question.length > 5) {
             items.push({
-                question: question.replace(/\n+/g, " "),
-                answer: answer || "No answer was provided for this question. Please generate or add a specific answer."
+                question,
+                answer: answer || "Answer not found in the AI response."
             });
         }
     });
