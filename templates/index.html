@@ -1007,28 +1007,82 @@
             }
 
             // Parse Q&A string from AI
-            function parseQuestionsText(text) {
-                const items = [];
-                // Divide questions based on numeric numbering followed by dot.
-                const segments = text.split(/(?=\b\d+[\.\:\)])/);
-                segments.forEach(segment => {
-                    const cleanSegment = segment.trim();
-                    if (!cleanSegment) return;
+            // function parseQuestionsText(text) {
+            //     const items = [];
+            //     // Divide questions based on numeric numbering followed by dot.
+            //     const segments = text.split(/(?=\b\d+[\.\:\)])/);
+            //     segments.forEach(segment => {
+            //         const cleanSegment = segment.trim();
+            //         if (!cleanSegment) return;
                     
-                    // Separate question body and description/answer text if exist
-                    const parts = cleanSegment.split(/(?=\bAnswer:|\bAns:|\bA:|\bDescription:)/i);
-                    const qText = parts[0].replace(/^\d+[\.\:\)\s]+/g, '').trim();
-                    let aText = parts[1] ? parts[1].replace(/^\b(Answer|Ans|A|Description):\s*/i, '').trim() : "Focus on demonstrating your technical competence, project work, and troubleshooting methodologies when answering questions about this skillset.";
+            //         // Separate question body and description/answer text if exist
+            //         const parts = cleanSegment.split(/(?=\bAnswer:|\bAns:|\bA:|\bDescription:)/i);
+            //         const qText = parts[0].replace(/^\d+[\.\:\)\s]+/g, '').trim();
+            //         let aText = parts[1] ? parts[1].replace(/^\b(Answer|Ans|A|Description):\s*/i, '').trim() : "Focus on demonstrating your technical competence, project work, and troubleshooting methodologies when answering questions about this skillset.";
                     
-                    if (qText.length > 5) {
-                        items.push({
-                            question: qText,
-                            answer: aText
-                        });
-                    }
-                });
-                return items;
-            }
+            //         if (qText.length > 5) {
+            //             items.push({
+            //                 question: qText,
+            //                 answer: aText
+            //             });
+            //         }
+            //     });
+            //     return items;
+            // }
+            
+function parseQuestionsText(text) {
+    if (!text) return [];
+
+    // Normalize line endings and remove common Markdown markers.
+    const normalized = text
+        .replace(/\r\n/g, "\n")
+        .replace(/\*\*/g, "")
+        .trim();
+
+    // Split only where a numbered question begins at a line start.
+    const segments = normalized.split(
+        /(?:^|\n)\s*(?=\d{1,2}[\.\:)]+\s*)/
+    );
+
+    const items = [];
+
+    segments.forEach(segment => {
+        const cleanSegment = segment.trim();
+        if (!cleanSegment) return;
+
+        const questionMatch = cleanSegment.match(
+            /^\d{1,2}[\.\:)]+\s*([\s\S]+)$/
+        );
+
+        if (!questionMatch) return;
+
+        const body = questionMatch[1].trim();
+
+        const answerMatch = body.match(
+            /(?:^|\n)\s*(?:Answer|Ans)\s*:\s*([\s\S]*)/i
+        );
+
+        const question = (
+            answerMatch
+                ? body.slice(0, answerMatch.index)
+                : body
+        ).trim();
+
+        const answer = answerMatch
+            ? answerMatch[1].trim()
+            : "";
+
+        if (question.length > 5) {
+            items.push({
+                question: question.replace(/\n+/g, " "),
+                answer: answer || "No answer was provided for this question. Please generate or add a specific answer."
+            });
+        }
+    });
+
+    return items;
+}
+
 
             // Simple markdown formatting helper to styling text from LLM
             function formatMarkdownText(text) {
