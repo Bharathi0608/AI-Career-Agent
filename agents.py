@@ -39,25 +39,63 @@ def extract_skills_ai(resume_text):
     return response.content
 
 
-def suggest_jobs_ai(skills):
+# def suggest_jobs_ai(skills):
+
+#     prompt = f"""
+#     Based on these skills:
+
+#     {skills}
+
+#     Suggest:
+
+#     1. Best job roles
+#     2. Career path
+#     3. Salary range
+
+#     Return clearly.
+#     """
+
+#     response = llm.invoke(prompt)
+
+#     return response.content
+
+
+def suggest_jobs_ai(skills, resume_text=""):
 
     prompt = f"""
-    Based on these skills:
+You are an AI career advisor. Analyze this specific candidate's resume.
 
-    {skills}
+EXTRACTED SKILLS:
+{skills}
 
-    Suggest:
+FULL RESUME:
+{resume_text}
 
-    1. Best job roles
-    2. Career path
-    3. Salary range
+Create personalized career recommendations using evidence from this resume.
 
-    Return clearly.
-    """
+Include:
+1. Best 5 job roles, ranked by suitability.
+2. For each role, explain which skills, projects, or experience make
+   the candidate suitable and identify any skill gaps.
+3. A realistic entry-level career roadmap with stages and milestones.
+4. Approximate annual salary ranges for India in INR.
+5. Three concrete actions the candidate should take next.
+
+Rules:
+- Base recommendations on the supplied resume, not an imagined candidate.
+- Mention actual projects, technologies, education, and experience
+  only when present in the resume.
+- Do not invent employment history, achievements, or qualifications.
+- If information is missing, explicitly say it is not provided.
+- Treat this candidate's resume independently of previous candidates.
+- Use clear headings and numbered lists.
+- Do not use Markdown tables or pipe separators.
+- Keep the recommendations relevant to the candidate's experience level.
+"""
 
     response = llm.invoke(prompt)
-
     return response.content
+
 # ADD BELOW THIS LINE
 
 def score_resume_ai(resume_text):
