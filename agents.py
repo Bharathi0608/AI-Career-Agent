@@ -98,24 +98,66 @@ Rules:
 
 # ADD BELOW THIS LINE
 
+# def score_resume_ai(resume_text):
+
+#     prompt = f"""
+#     Analyze this resume.
+
+#     Give:
+#     1. Resume score out of 100
+#     2. Strengths
+#     3. Weaknesses
+#     4. Suggestions
+
+#     Resume:
+
+#     {resume_text}
+#     """
+
+#     response = llm.invoke(prompt)
+
+#     return response.content
+
+
+
 def score_resume_ai(resume_text):
 
     prompt = f"""
-    Analyze this resume.
+You are a professional technical recruiter evaluating a resume.
 
-    Give:
-    1. Resume score out of 100
-    2. Strengths
-    3. Weaknesses
-    4. Suggestions
+Evaluate ONLY the resume provided below.
 
-    Resume:
+RESUME:
+{resume_text}
 
-    {resume_text}
-    """
+Score the resume out of 100 using these criteria:
+- Technical skills relevant to software/AI roles: 25 points
+- Projects and demonstrated practical work: 25 points
+- Internship or work experience: 20 points
+- Education and relevant certifications: 10 points
+- Resume clarity, structure, and readability: 20 points
+
+For every criterion:
+- Give the points earned and maximum possible points.
+- Explain the score using evidence from the resume.
+- Do not award experience or achievements that are not documented.
+
+Then provide:
+1. Overall score out of 100.
+2. Three specific strengths.
+3. Three specific weaknesses.
+4. Five prioritized improvements based on this resume.
+
+Rules:
+- The total score must equal the sum of the five criteria.
+- Do not use a fixed or default score.
+- Do not invent candidate details.
+- If resume text is unreadable or insufficient, clearly state this.
+- Use clear headings and bullet points.
+- Avoid Markdown tables and pipe separators.
+"""
 
     response = llm.invoke(prompt)
-
     return response.content
 
 
