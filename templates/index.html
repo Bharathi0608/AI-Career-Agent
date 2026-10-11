@@ -915,97 +915,232 @@
             }
 
             // Parser for Career Recommendations (Timeline + Salary)
-            function parseAndRenderCareerRecommendations(text) {
-                const timeline = document.getElementById('career-timeline');
-                const rawInsights = document.getElementById('career-insights-raw');
-                const salaryHighlight = document.getElementById('salary-highlight');
-                const salaryBadgeVal = document.getElementById('salary-badge-val');
+            // function parseAndRenderCareerRecommendations(text) {
+            //     const timeline = document.getElementById('career-timeline');
+            //     const rawInsights = document.getElementById('career-insights-raw');
+            //     const salaryHighlight = document.getElementById('salary-highlight');
+            //     const salaryBadgeVal = document.getElementById('salary-badge-val');
 
-                timeline.innerHTML = "";
-                rawInsights.innerHTML = "";
-                salaryHighlight.style.display = "none";
+            //     timeline.innerHTML = "";
+            //     rawInsights.innerHTML = "";
+            //     salaryHighlight.style.display = "none";
 
-                if (!text) {
-                    rawInsights.style.display = "block";
-                    rawInsights.textContent = "No recommendations received.";
-                    return;
-                }
+            //     if (!text) {
+            //         rawInsights.style.display = "block";
+            //         rawInsights.textContent = "No recommendations received.";
+            //         return;
+            //     }
 
-                // Remove note section if present
-                text = text.replace(/Note:.*?(?=\n\n|\nStep|\nPhase|$)/gis, '');
+            //     // Remove note section if present
+            //     text = text.replace(/Note:.*?(?=\n\n|\nStep|\nPhase|$)/gis, '');
 
-                // 1. Try to extract salary range (e.g. $80,000 - $110,000 or $80k-$120k)
-                const salaryRegex = /(\$\d+[\d,]*\s*(?:-\s*\$\d+[\d,]*|k\s*-\s*\$\d+k|\s*to\s*\$\d+[\d,]*|\s*per\s*year)?)/gi;
-                const salaryMatches = text.match(salaryRegex);
-                if (salaryMatches && salaryMatches.length > 0) {
-                    // Pull the most complete range found
-                    let bestMatch = salaryMatches[0];
-                    salaryMatches.forEach(m => {
-                        if (m.length > bestMatch.length) bestMatch = m;
-                    });
+            //     // 1. Try to extract salary range (e.g. $80,000 - $110,000 or $80k-$120k)
+            //     const salaryRegex = /(\$\d+[\d,]*\s*(?:-\s*\$\d+[\d,]*|k\s*-\s*\$\d+k|\s*to\s*\$\d+[\d,]*|\s*per\s*year)?)/gi;
+            //     const salaryMatches = text.match(salaryRegex);
+            //     if (salaryMatches && salaryMatches.length > 0) {
+            //         // Pull the most complete range found
+            //         let bestMatch = salaryMatches[0];
+            //         salaryMatches.forEach(m => {
+            //             if (m.length > bestMatch.length) bestMatch = m;
+            //         });
                     
-                    salaryBadgeVal.textContent = bestMatch.trim();
-                    salaryHighlight.style.display = "block";
-                }
+            //         salaryBadgeVal.textContent = bestMatch.trim();
+            //         salaryHighlight.style.display = "block";
+            //     }
 
-                // 2. Parse roadmap steps/phases (e.g., "Step 1: ...", "Phase 1: ...", "1. Role: ...")
-                const steps = [];
-                // Split by step or phase boundaries
-                const lines = text.split('\n');
-                let currentItem = null;
+            //     // 2. Parse roadmap steps/phases (e.g., "Step 1: ...", "Phase 1: ...", "1. Role: ...")
+            //     const steps = [];
+            //     // Split by step or phase boundaries
+            //     const lines = text.split('\n');
+            //     let currentItem = null;
 
-                lines.forEach(line => {
-                    const cleanLine = line.trim();
-                    if (!cleanLine) return;
+            //     lines.forEach(line => {
+            //         const cleanLine = line.trim();
+            //         if (!cleanLine) return;
 
-                    // Match step numbers or phase headers
-                    const stepHeaderMatch = cleanLine.match(/^(?:step|phase|pathway|\b\d\b)\s*[\d]*\s*[\.\:\-\)]\s*(.*)/i);
+            //         // Match step numbers or phase headers
+            //         const stepHeaderMatch = cleanLine.match(/^(?:step|phase|pathway|\b\d\b)\s*[\d]*\s*[\.\:\-\)]\s*(.*)/i);
                     
-                    if (stepHeaderMatch) {
-                        if (currentItem) steps.push(currentItem);
+            //         if (stepHeaderMatch) {
+            //             if (currentItem) steps.push(currentItem);
                         
-                        // Clean up numbers from title
-                        let title = stepHeaderMatch[1].replace(/^\s*[\-\:\.\(\)]+/g, '').trim();
-                        if (!title) {
-                            title = cleanLine;
-                        }
+            //             // Clean up numbers from title
+            //             let title = stepHeaderMatch[1].replace(/^\s*[\-\:\.\(\)]+/g, '').trim();
+            //             if (!title) {
+            //                 title = cleanLine;
+            //             }
 
-                        currentItem = {
-                            title: title,
-                            description: ""
-                        };
-                    } else if (currentItem) {
-                        const cleaned = cleanLine.replace(/^[\s*\-•]+/g, '').trim();
-                        if (cleaned) {
-                            currentItem.description += (currentItem.description ? " " : "") + cleaned;
-                        }
-                    }
-                });
+            //             currentItem = {
+            //                 title: title,
+            //                 description: ""
+            //             };
+            //         } else if (currentItem) {
+            //             const cleaned = cleanLine.replace(/^[\s*\-•]+/g, '').trim();
+            //             if (cleaned) {
+            //                 currentItem.description += (currentItem.description ? " " : "") + cleaned;
+            //             }
+            //         }
+            //     });
 
-                if (currentItem) steps.push(currentItem);
+            //     if (currentItem) steps.push(currentItem);
 
-                // If we found chronological steps, render as a timeline
-                if (steps.length > 1) {
-                    rawInsights.style.display = "none";
-                    steps.forEach(step => {
-                        const div = document.createElement('div');
-                        div.className = 'timeline-item';
-                        div.innerHTML = `
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <h4>${step.title}</h4>
-                                ${step.description ? `<p>${step.description}</p>` : ''}
-                            </div>
-                        `;
-                        timeline.appendChild(div);
-                    });
-                } else {
-                    // Fallback to raw formatted block
-                    rawInsights.style.display = "block";
-                    rawInsights.innerHTML = formatMarkdownText(text);
-                }
+            //     // If we found chronological steps, render as a timeline
+            //     if (steps.length > 1) {
+            //         rawInsights.style.display = "none";
+            //         steps.forEach(step => {
+            //             const div = document.createElement('div');
+            //             div.className = 'timeline-item';
+            //             div.innerHTML = `
+            //                 <div class="timeline-dot"></div>
+            //                 <div class="timeline-content">
+            //                     <h4>${step.title}</h4>
+            //                     ${step.description ? `<p>${step.description}</p>` : ''}
+            //                 </div>
+            //             `;
+            //             timeline.appendChild(div);
+            //         });
+            //     } else {
+            //         // Fallback to raw formatted block
+            //         rawInsights.style.display = "block";
+            //         rawInsights.innerHTML = formatMarkdownText(text);
+            //     }
+            // }
+
+            
+function parseAndRenderCareerRecommendations(text) {
+    const timeline = document.getElementById('career-timeline');
+    const rawInsights = document.getElementById('career-insights-raw');
+    const salaryHighlight = document.getElementById('salary-highlight');
+    const salaryBadgeVal = document.getElementById('salary-badge-val');
+
+    timeline.replaceChildren();
+    rawInsights.replaceChildren();
+    salaryHighlight.style.display = 'none';
+
+    if (!text || !text.trim()) {
+        rawInsights.style.display = 'block';
+        rawInsights.textContent = 'No career recommendations received.';
+        return;
+    }
+
+    // Extract a salary range when one is available.
+    const salaryMatch = text.match(
+        /(?:₹|INR\s*)[\d,]+(?:\s*(?:-|–|to)\s*(?:₹|INR\s*)?[\d,]+)?|(?:\$\s*[\d,]+(?:\s*[kK])?(?:\s*(?:-|–|to)\s*\$?\s*[\d,]+(?:\s*[kK])?)?)/i
+    );
+
+    if (salaryMatch) {
+        salaryBadgeVal.textContent = salaryMatch[0].trim();
+        salaryHighlight.style.display = 'block';
+    }
+
+    // Convert pipe-separated tables into readable content.
+    const cells = text
+        .replace(/\r\n/g, '\n')
+        .split(/[|\n]/)
+        .map(cell => cell
+            .replace(/\*\*/g, '')
+            .replace(/^#+\s*/, '')
+            .replace(/^\s*[-:]+\s*$/, '')
+            .trim()
+        )
+        .filter(cell => {
+            if (!cell) return false;
+            if (/^[-:\s]+$/.test(cell)) return false;
+            if (/^(#|role|stage|typical title|years of experience|key milestones|why it.s a fit|typical responsibilities)$/i.test(cell)) {
+                return false;
+            }
+            return true;
+        });
+
+    // Remove duplicate salary-only fragments and introductory notes.
+    const usefulCells = cells.filter(cell =>
+        !/^salary ranges?\b/i.test(cell) &&
+        !/^notes?:/i.test(cell)
+    );
+
+    // Detect numbered career roles or stages and display them as cards.
+    const rolePattern = /^(?:(?:step|phase|stage|level)\s*)?\d{1,2}\s*[\.\):\-]\s*(.+)$/i;
+    const roleCards = [];
+    let current = null;
+
+    usefulCells.forEach(cell => {
+        const match = cell.match(rolePattern);
+
+        if (match) {
+            if (current) roleCards.push(current);
+
+            current = {
+                title: match[1].trim(),
+                details: []
+            };
+        } else if (current) {
+            current.details.push(cell);
+        } else if (/^(entry|junior|mid[- ]level|senior|lead|executive)\b/i.test(cell)) {
+            current = {
+                title: cell,
+                details: []
+            };
+        } else if (/^(ai\/llm engineer|full[- ]stack|data scientist|prompt engineer|ml ops|backend engineer|ai solutions architect|nlp engineer|product engineer|data engineer|chatbot|conversational ai)/i.test(cell)) {
+            if (current) roleCards.push(current);
+
+            current = {
+                title: cell,
+                details: []
+            };
+        }
+    });
+
+    if (current) roleCards.push(current);
+
+    if (roleCards.length > 0) {
+        rawInsights.style.display = 'none';
+
+        roleCards.forEach(role => {
+            const item = document.createElement('div');
+            item.className = 'timeline-item';
+
+            const dot = document.createElement('div');
+            dot.className = 'timeline-dot';
+
+            const content = document.createElement('div');
+            content.className = 'timeline-content';
+
+            const heading = document.createElement('h4');
+            heading.textContent = role.title;
+            content.appendChild(heading);
+
+            if (role.details.length > 0) {
+                const paragraph = document.createElement('p');
+                paragraph.textContent = role.details.join(' ');
+                content.appendChild(paragraph);
             }
 
+            item.append(dot, content);
+            timeline.appendChild(item);
+        });
+    } else {
+        // Safe fallback: display readable paragraphs instead of raw pipes.
+        rawInsights.style.display = 'block';
+
+        const paragraphs = text
+            .replace(/\s*\|\s*/g, '\n')
+            .split(/\n+/)
+            .map(line => line.trim())
+            .filter(line =>
+                line &&
+                !/^[-:\s]+$/.test(line) &&
+                !/^salary ranges?\b/i.test(line)
+            );
+
+        paragraphs.forEach(line => {
+            const paragraph = document.createElement('p');
+            paragraph.textContent = line.replace(/\*\*/g, '');
+            rawInsights.appendChild(paragraph);
+        });
+    }
+}
+
+            
             // Parse Q&A string from AI
             // function parseQuestionsText(text) {
             //     const items = [];
