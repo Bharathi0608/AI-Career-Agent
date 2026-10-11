@@ -1,5 +1,5 @@
+
 from typing import TypedDict
-# pyrefly: ignore [missing-import]
 from langgraph.graph import StateGraph, END
 
 from agents import (
@@ -10,6 +10,7 @@ from agents import (
     cover_letter_ai
 )
 
+
 class ResumeState(TypedDict):
     resume_text: str
     skills: str
@@ -19,20 +20,16 @@ class ResumeState(TypedDict):
     cover_letter: str
 
 
-# def extract_node(state):
-#     state["skills"] = extract_skills_ai(state["resume_text"])
-#     return state
+def extract_node(state):
+    state["skills"] = extract_skills_ai(state["resume_text"])
+    return state
+
 
 def jobs_node(state):
     state["jobs"] = suggest_jobs_ai(
         state["skills"],
         state["resume_text"]
     )
-    return state
-
-
-def jobs_node(state):
-    state["jobs"] = suggest_jobs_ai(state["skills"])
     return state
 
 
