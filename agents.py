@@ -81,23 +81,61 @@ def score_resume_ai(resume_text):
     return response.content
 
 
+# def interview_questions_ai(skills):
+
+#     prompt = f"""
+#     Generate 15 interview questions with detailed answers for these skills:
+
+#     {skills}
+
+#     Format each question and answer as:
+#     Question: [question text]
+#     Answer: [detailed answer]
+
+#     Make the answers comprehensive and helpful for interview preparation.
+#     """
+
+#     response = llm.invoke(prompt)
+
+#     return response.content
+
+
 def interview_questions_ai(skills):
 
     prompt = f"""
-    Generate 15 interview questions with detailed answers for these skills:
+You are an experienced technical interviewer and interview coach.
 
-    {skills}
+Generate exactly 15 technical interview questions with detailed,
+accurate answers based on these skills:
 
-    Format each question and answer as:
-    Question: [question text]
-    Answer: [detailed answer]
+{skills}
 
-    Make the answers comprehensive and helpful for interview preparation.
-    """
+STRICT OUTPUT FORMAT:
+Use the following format for EVERY question:
+
+1. [Write one clear interview question]
+Answer: [Provide a specific, technically accurate answer in 3-6 sentences.]
+
+2. [Write the next interview question]
+Answer: [Provide a specific answer in 3-6 sentences.]
+
+Continue numbering consecutively through 15.
+
+IMPORTANT RULES:
+- Every question MUST have its own answer.
+- Put each question on a new line.
+- Start each answer with exactly "Answer:" on a new line.
+- Never omit an answer or repeat a generic answer.
+- Explain technical concepts clearly and include examples where useful.
+- Focus on the supplied skills; do not introduce unrelated technologies.
+- Avoid Markdown tables, pipe separators, and code fences.
+- Do not include an introduction or conclusion outside the 15 Q&A pairs.
+"""
 
     response = llm.invoke(prompt)
 
     return response.content
+
 
 
 def cover_letter_ai(resume_text):
